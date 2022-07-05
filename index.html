@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOLLYS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./common.css">
+    <script defer>
+        $(function () {
+            $('.wrap>i').click(function () {
+                $('nav').fadeIn('slow')
+            })
+            $('.close').click(function () {
+                $('nav').fadeOut('slow')
+            })
+            $('.gnb>li').click(function () {
+                if ($(this).attr('class') != 'on') {
+                    $('.sub').slideUp()
+                    $(this).find('.sub').slideToggle()
+                    $('.gnb>li').removeClass('on')
+                    $(this).addClass('on')
+                } else {
+                    $(this).find('.sub').slideToggle()
+                    $('.gnb>li').removeClass('on')
+                }
+            })
+            let elm = "section";
+            let moveTop = $(window).scrollTop();
+            let ht = $(window).height()
+            // 마우스 휠로 섹션 이동
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel", function (e) {
+                    e.preventDefault();
+                    let E = e.originalEvent
+                    console.log(E)
+                    let delta = 0;
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta;
+                    }
+
+                    let elmSelecter = $(elm).eq(index);
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next('section') != undefined) {
+                            try {
+                                moveTop = $(elmSelecter).next('section').offset().top;
+                            } catch (e) {}
+                        }
+                        // 마우스휠을 아래에서 위로
+                    } else {
+                        if ($(elmSelecter).prev('section') != undefined) {
+                            try {
+                                moveTop = $(elmSelecter).prev('section').offset().top;
+                            } catch (e) {}
+                        }
+                    }
+                    // 화면 이동 0.8초(800)
+                    $("html,body").stop().animate({
+                        scrollTop: moveTop + 'px'
+                    }, 800);
+                });
+            });
+
+        })
+    </script>
+
+</head>
+
+<body>
+    <header class="hd">
+        <div class="wrap">
+            <h1><img src="./img/logo.png" alt="할리스로고"></h1>
+            <nav>
+                <ul class="gnb">
+                    <li>
+                        <a href="#">MENU</a>
+                        <ul class="sub">
+                            <a href="#">커피</a>
+                            <a href="#">음료</a>
+                            <a href="#">스파클링</a>
+                            <a href="#">푸드</a>
+                            <a href="#">MD상품</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">MALL</a>
+                        <ul class="sub">
+                            <a href="#">할리스콘</a>
+                            <a href="#">할리스카드</a>
+                            <a href="#">E-Store</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">MEMBERSHIP</a>
+                        <ul class="sub">
+                            <a href="#">스마트오더</a>
+                            <a href="#">맴버십 혜택</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">NEWS</a>
+                        <ul class="sub">
+                            <a href="#">Notice</a>
+                            <a href="#">Event</a>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">HOLLYS IS</a>
+                        <ul class="sub">
+                            <a href="#">HOLLYS</a>
+                            <a href="#">About Us</a>
+                            <a href="#">채용안내</a>
+                            <a href="#">가맹안내</a>
+                            <a href="#">B2B안내</a>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="fa-solid fa-xmark fa-2x close"></i>
+            </nav>
+            <i class="fa-solid fa-bars fa-2x ham"></i>
+        </div>
+    </header>
+    <section class="swiper sec1">
+        <ul class="swiper-wrapper">
+            <li class="sec1_ban1 swiper-slide">
+                <div class="txt1">
+                    <span>할리스와 함께라면 더운 여름도 시원하게 :)</span>
+                    <p>할리스 어플 신규 가입시</p>
+                    <strong>아메리카노 무료</strong>
+                    <p>6월24일(금)~7월7일(목)</p>
+                </div>
+                <img src="./img/sec1/ban1_leaf.png" alt="야자수잎이미지">
+                <img src="./img/sec1/ban1_leaf.png" alt="야자수잎이미지">
+                <img src="./img/sec1/coffee_img.png" alt="커피이미지">
+            </li>
+            <li class="sec1_ban2 swiper-slide">
+                <div class="txt2">
+                    <h2><img src="./img/logo_img.png" alt="할리스아이콘"></h2>
+                    <span>매주 월요일</span>
+                    <p>HOLLYS RED DAY</p>
+                    <strong>아이스 아메리카노 <span>무료</span></strong>
+                    <p>6월13일(월)~7월11일(월)</p>
+                    <br><span>⁕할리스 APP 딜리버리 주문에 한함</span>
+                </div>
+                <img src="./img/sec1/coffee_img.png" alt="">
+            </li>
+            <li class="sec1_ban3 swiper-slide">
+                <div class="txt3">
+                    <h2>Chill & Cool Wave</h2>
+                    <p>빙수 맛집, 할리스 빙수 3종 출시!</p>
+                </div>
+                <div class="prodbox">
+                    <div class="sec1_prod1">
+                        <img src="./img/sec1/ban1_3_1.png" alt="빙수1">
+                        <p>블랙 몬스터<br>초코 빙수</p>
+                    </div>
+                    <div class="sec1_prod2">
+                        <img src="./img/sec1/ban1_3_2.png" alt="빙수2">
+                        <p>애플망고<br>치즈케이크 빙수</p>
+                    </div>
+                    <div class="sec1_prod3">
+                        <img src="./img/sec1/ban1_3_3.png" alt="빙수3">
+                        <p>국산 팥으로 만든<br>눈꽃 팥빙수</p>
+                    </div>
+                </div>
+            </li>
+            <li class="sec1_ban4 swiper-slide">
+                <div class="txt4">
+                    <span>HOLLYS</span>
+                    <p>맴버십 회원만이 누리는</p>
+                    <div>6월의 특별한 선물</div>
+                    <p>할리스 맴버십 APP "MY 쿠폰"에서 확인하세요!</p>
+                </div>
+                <button class="ban4_btn">MORE</button>
+            </li>
+        </ul>
+        <div class="swiper-pagination sec1_pg"></div>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper(".sec1", {
+                loop: true,
+                pagination: {
+                    el: ".sec1_pg",
+                    type: "progressbar",
+                },
+            });
+        </script>
+    </section>
+    <section class="sec2">
+        <h2>HOLLYS MALL</h2>
+        <div class="swiper sec2_slide">
+            <ul class="swiper-wrapper">
+                <li class="swiper-slide">
+                    <img src="./img/sec2/sec2_1.png" alt="할리스몰상품리스트1">
+                    <span>COFFEE</span>
+                </li>
+                <li class="swiper-slide">
+                    <img src="./img/sec2/sec2_2.png" alt="할리스몰상품리스트2">
+                    <span>BEVERAGE</span>
+                </li>
+                <li class="swiper-slide">
+                    <img src="./img/sec2/sec2_5.png" alt="할리스몰상품리스트5">
+                    <span>SPARKLING</span>
+                </li>
+                <li class="swiper-slide">
+                    <img src="./img/sec2/sec2_3.png" alt="할리스몰상품리스트3">
+                    <span>DESSERT</span>
+                </li>
+                <li class="swiper-slide">
+                    <img src="./img/sec2/sec2_4.png" alt="할리스몰상품리스트4">
+                    <span>ICE FLAKES</span>
+                </li>
+            </ul>
+        </div>
+        <div class="sec2_txt">
+            <p>커피의 즐거움을 만드는
+                <br>'작은 차이의 미학'
+                <br>할리스는 ‘의미 있는 작은 차이가
+                <br>평범함과 특별함을 가르는
+                <br>기준이 된다’고 생각합니다.
+            </p>
+        </div>
+        <div class="swiper-button-next sec2_next"></div>
+        <div class="swiper-button-prev sec2_prev"></div>
+        <script>
+            var swiper = new Swiper(".sec2_slide", {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                loop: true,
+                navigation: {
+                    nextEl: ".sec2_next",
+                    prevEl: ".sec2_prev",
+                },
+            });
+        </script>
+    </section>
+    <section class="sec3">
+        <h2>OUR FRANCHISE.</h2>
+        <div>
+            <p>할리스(HOLLYS)는 1998년 6월 서울 강남에 한국 최초로<br>
+                에스프레소 전문점을 오픈한 커피 브랜드 입니다.<br>
+                부드럽고 깊은 커피 맛을 선호하는 한국 사람들의 입맛에 맞게<br>
+                독자적으로 원두를 로스팅해 고객들의 사랑을 받고 있습니다.
+            </p>
+            <div class="sec3_ani">
+                <p>SWIPE</p>
+                <i class="fa-solid fa-arrow-right-long fa-2x"></i>
+            </div>
+        </div>
+        <div class="swiper sec3_box">
+            <ul class="swiper-wrapper sec3_slide">
+                <li class="swiper-slide">
+                    <div class="sec3_txt">
+                        <p>01<br>우리나라 최초<br>커피 전문점</p>
+                        <span>1998년 6월 한국 최초로<br>
+                            에스프레소 전문점을 오픈한<br>
+                            커피 전문 브랜드</span>
+                    </div>
+                    <img src="./img/sec3/sec3_1.jpg" alt="프랜차이즈홍보이미지1">
+                </li>
+                <li class="swiper-slide">
+                    <div class="sec3_txt">
+                        <p>02<br>
+                            체계적인 운영시스템으로<br>
+                            가맹점 관리</p>
+                        <span>20년간의 커피전문점<br>
+                            브랜드 운영 노하우로<br>
+                            철저한 관리</span>
+                    </div>
+                    <img src="./img/sec3/sec3_2.jpg" alt="프랜차이즈홍보이미지2">
+                </li>
+                <li class="swiper-slide">
+                    <div class="sec3_txt">
+                        <p>03<br>
+                            창업자금<br>
+                            지원 대출</p>
+                        <span>할리스 예비 창업자<br>
+                            대상 창업자금<br>
+                            최대 1억원 대출 지원</span>
+                    </div>
+                    <img src="./img/sec3/sec3_3.jpg" alt="프랜차이즈홍보이미지3">
+                </li>
+                <li class="swiper-slide">
+                    <div class="sec3_txt">
+                        <p>04<br>
+                            국내 로스팅<br>신선한 원두</p>
+                        <span>자체 로스팅 센터 운영으로<br>
+                            생산지에서 직수입한 생두를<br>
+                            각각의 특성에 맞게 로스팅하여<br>
+                            스페셜티 커피 및<br>
+                            COE(Cup Of Excellence) 의<br>
+                            고품질 커피까지<br>
+                            최적의 커피맛을 구현</span>
+                    </div>
+                    <img src="./img/sec3/sec3_4.jpg" alt="프랜차이즈홍보이미지4">
+                </li>
+                <li class="swiper-slide">
+                    <div class="sec3_txt">
+                        <p>05<br>
+                            Marketing<br>Activities</p>
+                        <span>할리스 멤버십, 신규 고객 등<br>
+                            다양한 고객을 대상으로<br>
+                            활발한 마케팅 활동 진행<br>
+                            SNS 및 블로그 채널을 통해<br>
+                            실시간으로 고객과 소통</span>
+                    </div>
+                    <img src="./img/sec3/sec3_5.jpg" alt="프랜차이즈홍보이미지5">
+                </li>
+            </ul>
+        </div>
+        <script>
+            var swiper = new Swiper(".sec3_box", {});
+        </script>
+    </section>
+    <section class="sec4">
+        <div class="inner">
+            <h2>HOLLYS LIVE.</h2>
+            <div class="txt_box">
+                <p>할리스의 새로운 소식을 SNS와 할리스 YOUTUBE채널에서 만나 보세요.</p>
+                <div class="sec4_icon">
+                    <img src="./img/sec4/sns_1.png" alt="sns이미지1">
+                    <img src="./img/sec4/sns_2.png" alt="sns이미지2">
+                    <img src="./img/sec4/sns_3.png" alt="sns이미지3">
+                </div>
+            </div>
+            <div class='embed-container'>
+                <iframe src='https://www.youtube.com/embed/O5e_INK1UPE' frameborder='0' allowfullscreen></iframe>
+                <iframe src='https://www.youtube.com/embed/aTcAQH_ngG0' frameborder='0' allowfullscreen></iframe>
+            </div>
+            <button class="sec4_btn">MORE</button>
+        </div>
+    </section>
+    <section class="sec5">
+        <h3>NOTICE.</h3>
+        <p>할리스의 다양한 소식들을 만나 보세요.</p>
+        <div class="noti_con">
+            <div class="noti_box">
+                <span>할리스 맴버십</span>
+                <p>할리스 맴버십 'CROWN'으로 다양한 혜택을 즐겨보세요.</p>
+                <img src="./img/sec5/sec5_1.png" alt="공지사항세부이미지1">
+            </div>
+            <div class="noti_box">
+                <span>할리스 카드</span>
+                <p>할리스카드로 쉽고 간편하게 소중한 사람들에게 마음을 전하세요.</p>
+                <img src="./img/sec5/sec5_2.png" alt="공지사항세부이미지2">
+            </div>
+            <div class="noti_box">
+                <span>할리스 B2B</span>
+                <p>할리스 F&B는 20년의 커피 노하우를 기반으로 한 할리스 B2B 솔루션을 소개합니다.</p>
+                <img src="./img/sec5/sec5_3.png" alt="공지사항세부이미지3">
+            </div>
+            <div class="noti_box">
+                <span>창업안내</span>
+                <p>전화 문의부터 창업 설명회까지 전국 각지에서 할리스 창업을 상담 해드립니다.</p>
+                <img src="./img/sec5/sec5_4.png" alt="공지사항세부이미지4">
+            </div>
+            <div class="noti_box">
+                <span>할리스 뉴스</span>
+                <p>할리스의 각종 이벤트와 이슈를 알려드립니다.</p>
+                <img src="./img/sec5/sec5_5.png" alt="공지사항세부이미지5">
+            </div>
+            <div class="noti_box">
+                <span>고객문의</span>
+                <p>궁금하시거나 불편하신 사항을 답변 해드립니다.</p>
+                <img src="./img/sec5/sec5_6.png" alt="공지사항세부이미지6">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="f_inner">
+            <h1><img src="./img/f_logo.png" alt="푸터로고"></h1>
+            <div class="f_nav">
+                <p>개인정보처리방침</p>
+                <p>서비스이용약관</p>
+                <p>맴버십이용약관</p>
+                <p>할리스카드이용약관</p>
+                <p>고객문의</p>
+                <p>고객설문</p>
+            </div>
+        </div>
+        <div class="f_txt">
+            <span>법인명 : (주)케이지할리스에프앤비</span>
+            <span>대표자 : 이종현</span>
+            <span>사업자등록번호 : 211-87-61044</span><br>
+            <span>통신판매업 : 제2019-서울종로-0193호</span><br>
+            <span>주소 : 서울특별시 종로구 율곡로 88 삼환빌딩 8층 (운니동)</span><br>
+            <span>대표전화 : 02-2188-7100 (가맹문의 : 02-6350-7229)</span>
+        </div>
+        <div class="copy">
+            <p>COPYRIGHT©KG HOLLYS F&B. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
